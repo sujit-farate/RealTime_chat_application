@@ -45,22 +45,12 @@ socket.on("getData",(msg)=>{
 
         socket.emit("recieveMsg",msg)
       
-        // socket.emit("isTyping", JSON.stringify({
-        
-        //   Chat_Id1: `${props.username}_${props.localvalue}`,
-        //   Chat_Id2: `${props.localvalue}_${props.username}`,
-        
-        //   isTyping:false
-        // }))
-        // setIsTyping(false)
+       
 
         setInputMessage("")
 
     },[props.localvalue])
 
-//     useEffect(()=>{
-// console.log("inputMessage effect")
-//     },[inputMessage])
 
   
 socket.on("checkTyping",(msg)=>{
@@ -81,12 +71,7 @@ socket.on("checkTyping",(msg)=>{
 const handleMessage=(e)=>{
 
 setInputMessage(e.target.value)
-    // socket.emit("isTyping", JSON.stringify({
-        
-    //       Chat_Id1: `${props.username}_${props.localvalue}`,
-    //       Chat_Id2: `${props.localvalue}_${props.username}`,
-    //       isTyping:isTyping
-    //     }))
+   
 }
 
 
@@ -148,13 +133,7 @@ useEffect(() => {
        socket.emit("storeData",data)
        
   
-      //  socket.emit("isTyping", JSON.stringify({
-        
-      //   Chat_Id1: `${props.username}_${props.localvalue}`,
-      //   Chat_Id2: `${props.localvalue}_${props.username}`,
-      
-      //   isTyping:false
-      // }))
+     
     }
   
      
@@ -180,20 +159,7 @@ useEffect(() => {
             }}
           >
             <Toolbar />
-            {/* <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-            enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-            imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-            Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-            Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-            adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-            nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-            leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-            feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-            consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-            sapien faucibus et molestie ac.
-          </Typography> */}
+           
             <List>
               {message?.map((val) => {
                 console.log("message", val.Chat_Id);
@@ -261,9 +227,7 @@ useEffect(() => {
               onKeyUp={handleKeyUp}
               // id="msg"
             />
-            {/* <Button variant="contained" onClick={sendMessage}>
-              Send
-            </Button> */}
+            
             <IconButton onClick={sendMessage} sx={{ backgroundColor: "#383c8dd4",margingLeft:"15px",'&:hover': {
           backgroundColor: '#383c8dd4', 
         }, }}>

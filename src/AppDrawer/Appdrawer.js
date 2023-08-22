@@ -11,23 +11,23 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import SearchSharpIcon from '@mui/icons-material/SearchSharp';
+
 import { Autocomplete, Avatar, Button, IconButton, ListItemAvatar, TextField, createTheme, useMediaQuery,useTheme } from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 import { useEffect } from 'react';
 import { useState } from 'react';
-import BasicPopover from '../SearchEmployee/SearchEmployee';
-import Chat from '../Chatscreen/chat';
+
+
 import { useLocation } from 'react-router-dom';
 import axios from "axios"
-import Chatscreen from '../SearchEmployee/SearchEmployee';
+
 import SearchEmployee from '../SearchEmployee/SearchEmployee';
 import Chatv1 from '../Chatscreen/Chatv1';
 import StorageRoundedIcon from '@mui/icons-material/StorageRounded';
 import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
+import { PostAPI } from '../Services/Services';
+import { API } from '../API';
 // import SearchEmployee from '../SearchEmployee/SearchEmployee';
 
 
@@ -73,27 +73,33 @@ useEffect(()=>{
     email: email,
     password: password
   }
-  
-  let config = {
-    method: 'post',
-    maxBodyLength: Infinity,
-    url: 'http://localhost:4000/fetchFilteremoloyee',
-    headers: { 
-      'Content-Type': 'application/json'
-    },
-    data : data
-  };
-  
-  axios.request(config)
-  .then((response) => {
-      console.log(response)
-    console.log(response.data);
-  
-      setEmp(response.data)
-    })
-  .catch((error) => {
+
+  PostAPI(API.fetchFilteremoloyee,data).then((response)=>{
+    setEmp(response.data)
+  }).catch((error)=>{
     console.log(error);
-  });
+  })
+  
+  // let config = {
+  //   method: 'post',
+  //   maxBodyLength: Infinity,
+  //   url: 'http://localhost:4000/fetchFilteremoloyee',
+  //   headers: { 
+  //     'Content-Type': 'application/json'
+  //   },
+  //   data : data
+  // };
+  
+  // axios.request(config)
+  // .then((response) => {
+  //     console.log(response)
+  //   console.log(response.data);
+  
+  //     setEmp(response.data)
+  //   })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 },[])
 
 
@@ -154,37 +160,10 @@ useEffect(()=>{
 },[name])
 
 
-// useEffect(()=>{
-  
-//   let data = JSON.stringify({
-//     "Chat_Id1": "sujit_sakshi",
-//     "Chat_Id2": "sakshi_sujit"
-//   });
-  
-//   let config = {
-//     method: 'post',
-//     maxBodyLength: Infinity,
-//     url: 'http://localhost:4000/get_last_msg',
-//     headers: { 
-//       'Content-Type': 'application/json'
-//     },
-//     data : data
-//   };
-  
-//   axios.request(config)
-//   .then((response) => {
-//     setLastmsg(response.data)
-//     console.log(JSON.stringify(response.data));
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-  
-
-// },[lastmsg])
 
 
-// console.log("filterEmployee",filterEmployee)
+
+
   return (
     <Box sx={{ display: 'flex',backgroundColor:"" }}>
       <CssBaseline />
@@ -287,7 +266,7 @@ renderInput={(params) => <TextField {...params} label="Movie" />}
     }
       
     
-    {/* <Chat email={email} localvalue={localvalue} username={username}/> */}
+    
     <Chatv1 email={email} localvalue={localvalue} username={username}/>
        <SearchEmployee open={open} setOpen={setOpen} filterEmployee={filterEmployee} setName={setName}  name={name} setLocalvalue={setLocalvalue}/>
       </Box>

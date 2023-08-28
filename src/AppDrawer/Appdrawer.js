@@ -175,7 +175,7 @@ useEffect(()=>{
         {/* <AccountCircleIcon  /> */}
         <Box sx={{    display: "flex",
               alignItems: "center"}}>
-        <IconButton><StorageRoundedIcon/></IconButton>
+        <IconButton onClick={handleClick}><StorageRoundedIcon/></IconButton>
           <Typography variant="h6" noWrap component="div">
            {localvalue}
           </Typography></Box>
@@ -233,7 +233,7 @@ renderInput={(params) => <TextField {...params} label="Movie" />}
 </Toolbar>
 <Divider />
 
-<List sx={{paddingTop:'0px'}}>
+<List sx={{paddingTop:'0px',overflow:"auto"}}>
   {emp?.map((text, index) => (
     <>
     <ListItem key={text}  
@@ -244,10 +244,10 @@ renderInput={(params) => <TextField {...params} label="Movie" />}
           {index % 2 === 0 ? <AccountCircleIcon  /> : <AccountCircleIcon  />}
         </ListItemIcon> */}
 
-                <ListItemAvatar>
+                {/* <ListItemAvatar>
                   {index % 2 === 0?<Avatar alt="Remy Sharp" src="/images/profile1.jpg" />: <Avatar alt="Remy Sharp" src="/images/profile.JPG" /> }
          
-        </ListItemAvatar>
+        </ListItemAvatar> */}
 
         <ListItemText  primary={text.name}  
         sx={selectedIndex==index?{color:"black"}:{color:"white","&:hover":{color:"black"}}}
@@ -268,7 +268,7 @@ renderInput={(params) => <TextField {...params} label="Movie" />}
     
     
     <Chatv1 email={email} localvalue={localvalue} username={username}/>
-       <SearchEmployee open={open} setOpen={setOpen} filterEmployee={filterEmployee} setName={setName}  name={name} setLocalvalue={setLocalvalue}/>
+       <SearchEmployee open={open} setOpen={setOpen} emp={emp} filterEmployee={filterEmployee} setName={setName}  name={name} setLocalvalue={setLocalvalue}/>
       </Box>
       
     

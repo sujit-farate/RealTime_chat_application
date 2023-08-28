@@ -12,6 +12,7 @@ import {
     IconButton,
     ListItemAvatar,
     Avatar,
+    useMediaQuery,useTheme
   } from "@mui/material";
   import React, { useEffect, useState } from "react";
   import axios from "axios";
@@ -22,6 +23,9 @@ import {
   let socket=io("http://localhost:4000")
 const Chatv1 = (props) => {
 
+const theme = useTheme();
+
+const isXsScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     const [message, setMessage] = useState(null);
     const[inputMessage,setInputMessage]=useState("")
@@ -215,9 +219,9 @@ useEffect(() => {
               type="text"
               placeholder="Enter Message..."
               style={{
-                minWidth: "90%",
+                minWidth: isXsScreen? "89%":"90%",
                 // height: "5vh",
-                padding:"20px",
+                padding:"18px",
                 // borderRadius: "13px",
                 border: "1px solid white" ,
               }}

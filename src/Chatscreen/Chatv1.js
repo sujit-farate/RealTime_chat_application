@@ -219,7 +219,7 @@ useEffect(() => {
               type="text"
               placeholder="Enter Message..."
               style={{
-                minWidth: isXsScreen? "89%":"90%",
+                minWidth: isXsScreen? "89%":"94%",
                 // height: "5vh",
                 padding:"18px",
                 // borderRadius: "13px",

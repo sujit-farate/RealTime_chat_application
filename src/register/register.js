@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -43,6 +43,9 @@ const Register = () => {
       });
   };
 
+  const userLogin=()=>{
+    navigate("/login")
+  }
   return (
     <div
       style={{
@@ -54,7 +57,7 @@ const Register = () => {
     >
       <div
         style={{
-          height: "300px",
+          height: "350px",
           width: "300px",
           border: "1px solid gray",
           display: "flex",
@@ -76,13 +79,16 @@ const Register = () => {
           }}
         >
           <h1>User Registration</h1>
+          
           <TextField id="name" label="name" size="small" />
           <TextField id="email" label="email" size="small" />
           <TextField id="password" label="password" size="small" />
           <Button variant="contained" onClick={userRegister}>
             Register
           </Button>
-          <NavLink to="/login">Login</NavLink>
+          <Typography>Already have an account</Typography>
+          <Button variant="contained" onClick={userLogin}>Login</Button>
+          {/* <NavLink to="/login">Login</NavLink> */}
         </div>{" "}
       </div>{" "}
     </div>

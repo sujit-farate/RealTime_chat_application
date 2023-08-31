@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import TextField from "@mui/material/TextField/TextField";
 import Button from "@mui/material/Button/Button";
@@ -56,6 +56,10 @@ const Login = () => {
       });
   };
 
+  const userRegister=()=>{
+    navigate("/")
+  }
+
   return (
     <div
       style={{
@@ -67,7 +71,7 @@ const Login = () => {
     >
       <div
         style={{
-          height: "300px",
+          height: "350px",
           width: "300px",
           border: "1px solid gray",
           display: "flex",
@@ -94,6 +98,11 @@ const Login = () => {
           <Button variant="contained" onClick={login}>
             Login
           </Button>
+          <Typography>Already have an account</Typography>
+          <Button variant="contained" onClick={userRegister}>
+            Register
+          </Button>
+         
         </div>{" "}
       </div>{" "}
     </div>

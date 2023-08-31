@@ -28,6 +28,7 @@ import StorageRoundedIcon from '@mui/icons-material/StorageRounded';
 import LogoutTwoToneIcon from '@mui/icons-material/LogoutTwoTone';
 import { PostAPI } from '../Services/Services';
 import { API } from '../API';
+import { useNavigate } from 'react-router-dom';
 // import SearchEmployee from '../SearchEmployee/SearchEmployee';
 
 
@@ -35,6 +36,7 @@ import { API } from '../API';
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
+  const navigate=useNavigate()
   const location=useLocation()
   console.log("location",location)
   const username=location.state.name;
@@ -159,7 +161,9 @@ useEffect(()=>{
   });
 },[name])
 
-
+const Logout=()=>{
+  navigate("/login")
+}
 
 
 
@@ -182,7 +186,7 @@ useEffect(()=>{
           <Box sx={{    display: "flex",
               alignItems: "center"}}>
           <Typography >{"Welcome :) "+username}</Typography>
-          <IconButton sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Box>
+          <IconButton onClick={Logout} sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Box>
         </Toolbar>
       </AppBar>:
       <AppBar 
@@ -197,7 +201,7 @@ useEffect(()=>{
           <Box sx={{    display: "flex",
               alignItems: "center"}}>
           <Typography >{"Welcome :) "+username}</Typography>
-          <IconButton sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Box>
+          <IconButton onClick={Logout}  sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Box>
         </Toolbar>
       </AppBar>}
       
@@ -219,7 +223,7 @@ variant="permanent"
 anchor="left"
 >
 <Toolbar  sx={{backgroundColor:"#62839e91",}}>
-<Button onClick={handleClick} variant='contained' sx={{width:"15vw",backgroundColor:"purple"}}>Find user</Button>
+<Button onClick={handleClick} variant='contained' sx={{width:"15vw",backgroundColor:"purple" , ":hover":{backgroundColor:"#642e64"} }}>Find user</Button>
   {/* <TextField type='search' placeholder='Search' size='small' value={name} onChange={searchName} /> */}
   {/* <Autocomplete
 disablePortal

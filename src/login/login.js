@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import TextField from "@mui/material/TextField/TextField";
 import Button from "@mui/material/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { LoginAPI, PostAPI } from "../Services/Services";
@@ -102,9 +102,10 @@ const Login = () => {
           <Button variant="contained" onClick={userRegister}>
             Register
           </Button>
-         
-        </div>{" "}
-      </div>{" "}
+          <Box>
+         <NavLink>Forgot Password?</NavLink></Box>
+        </div>
+      </div>
     </div>
   );
 };

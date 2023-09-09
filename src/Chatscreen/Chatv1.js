@@ -183,7 +183,7 @@ useEffect(() => {
                       }}
                     > 
                     {/* <ListItemAvatar> */}
-                    <Avatar alt="Remy Sharp" src="/images/profile.JPG" /> 
+                    {/* <Avatar alt="Remy Sharp" src="/images/profile.JPG" />  */}
           
          {/* </ListItemAvatar> */}
                       <ListItemText

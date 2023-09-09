@@ -144,7 +144,7 @@ useEffect(()=>{
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'http://localhost:4000/search/'+name,
+    url: 'http://localhost:4000/api/v1/search/'+name,
     headers: { 
       'Content-Type': 'application/json'
     },

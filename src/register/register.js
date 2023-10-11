@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -8,39 +8,91 @@ import { API } from "../API";
 
 const Register = () => {
   const navigate = useNavigate();
-
+  
   const userRegister = () => {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    let data = {
-      name: name,
-      email: email,
-      password: password,
+    const profile = document.getElementById("profile").files[0];
+  //  const profilePath=`uploads\\${profile.lastModified}-${profile.name}`
+
+    
+    // let data = {
+    //   name: name,
+    //   email: email,
+    //   password: password,
+    //   image:profile
+    // };
+    // console.log("=====>",profile)
+    var FormData = require("form-data");
+
+    var datav1 = new FormData();
+    datav1.append("name", name);
+    datav1.append("email", email);
+    datav1.append("password", password);
+    datav1.append("file", profile);
+
+    var config = {
+      method: "post",
+      url: "http://localhost:4000/api/v1/register",
+
+      data: datav1,
     };
-    PostAPI(API.REGISTER, data)
-      .then((response) => {
-        console.log(response);
-        console.log(JSON.stringify(response.data));
-        if (response.data.status == true) {
+
+    axios(config)
+      .then(function (response) {
+        console.log("uploded image",response.data);
+        if(response.data.status==true){
           Swal.fire({
-            // title: 'Good job!',
-            text: `${response.data.message}`,
-            icon: "success",
-          }).then(() => {
-            navigate("/login");
-          });
-        } else {
+                    // title: 'Good job!',
+                    text: `${response.data.message}`,
+                    icon: "success",
+                  })
+        }else{
           Swal.fire({
-            // title: 'Good job!',
-            text: `${response.data.message}`,
-            icon: "error",
-          });
+                    // title: 'Good job!',
+                    text: `${response.data.message}`,
+                    icon: "error",
+                  })
         }
+       
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.log(error);
+        Swal.fire({
+                  // title: 'Good job!',
+                  text: `${error.message}`,
+                  icon: "error",
+                })
+       
       });
+
+
+  // var imgUrl = `${fetchFile?.data[0].name}`;
+  // let newIMG = imgUrl.replace(/\\/g, "/");
+    // PostAPI(API.REGISTER, data)
+    //   .then((response) => {
+    //     console.log(response);
+    //     console.log(JSON.stringify(response.data));
+    //     if (response.data.status == true) {
+    //       Swal.fire({
+    //         // title: 'Good job!',
+    //         text: `${response.data.message}`,
+    //         icon: "success",
+    //       }).then(() => {
+    //         navigate("/login");
+    //       });
+    //     } else {
+    //       Swal.fire({
+    //         // title: 'Good job!',
+    //         text: `${response.data.message}`,
+    //         icon: "error",
+    //       });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   const userLogin=()=>{
@@ -83,6 +135,7 @@ const Register = () => {
           <TextField id="name" label="name" size="small" />
           <TextField id="email" label="email" size="small" />
           <TextField id="password" label="password" size="small" />
+          <TextField id="profile"  size="small" type="file" />
           <Button variant="contained" onClick={userRegister}>
             Register
           </Button>

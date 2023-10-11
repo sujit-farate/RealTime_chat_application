@@ -82,26 +82,7 @@ useEffect(()=>{
     console.log(error);
   })
   
-  // let config = {
-  //   method: 'post',
-  //   maxBodyLength: Infinity,
-  //   url: 'http://localhost:4000/fetchFilteremoloyee',
-  //   headers: { 
-  //     'Content-Type': 'application/json'
-  //   },
-  //   data : data
-  // };
-  
-  // axios.request(config)
-  // .then((response) => {
-  //     console.log(response)
-  //   console.log(response.data);
-  
-  //     setEmp(response.data)
-  //   })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
+ 
 },[])
 
 
@@ -167,7 +148,12 @@ const Logout=()=>{
 
 
 
-
+console.log("emp",emp); 
+emp.map(url=>{
+  console.log("Istrue===>",`http://localhost:4000/${url.image}`);
+  
+  // console.log("Istrue1===>",url.image=="uploads/1694248779888-071c4ce7bdd7827b2a8686fdb92acd63.jpg");
+})
   return (
     <Box sx={{ display: 'flex',backgroundColor:"" }}>
       <CssBaseline />
@@ -248,10 +234,10 @@ renderInput={(params) => <TextField {...params} label="Movie" />}
           {index % 2 === 0 ? <AccountCircleIcon  /> : <AccountCircleIcon  />}
         </ListItemIcon> */}
 
-                {/* <ListItemAvatar>
-                  {index % 2 === 0?<Avatar alt="Remy Sharp" src="/images/profile1.jpg" />: <Avatar alt="Remy Sharp" src="/images/profile.JPG" /> }
-         
-        </ListItemAvatar> */}
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={`http://localhost:4000/${text.image}`} /> 
+                  {/* <Avatar alt="Remy Sharp" src="http://localhost:4000/uploads//1697040910853-IMG-20190510-WA0001.jpg" />  */}
+        </ListItemAvatar>
 
         <ListItemText  primary={text.name}  
         sx={selectedIndex==index?{color:"black"}:{color:"white","&:hover":{color:"black"}}}

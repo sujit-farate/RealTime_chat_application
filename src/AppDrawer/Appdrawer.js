@@ -49,6 +49,7 @@ const[name,setName]=useState("")
 const[filterEmployee,setFilterEmployee]=useState([])
 const [open, setOpen] = React.useState(false);
 const [selectedIndex, setSelectedIndex] = React.useState(null);
+const [profileImg, setProfileImg] = React.useState(null);
 // const[lastmsg,setLastmsg]=useState("")
 const theme = useTheme();
 
@@ -88,12 +89,13 @@ useEffect(()=>{
 
 
 
-const getEmpId=(id,name,index)=>{
+const getEmpId=(data,index)=>{
   setSelectedIndex(index)
-  console.log("click on id ",id);
+  console.log("click on id ",data);
   // localStorage.setItem("userid",name)
   // setLocalvalue(localStorage.getItem("userid"))
-  setLocalvalue(name)
+  setLocalvalue(data.name)
+  setProfileImg(data.image)
   // console.log("click on id ",id);
   // console.log(localStorage.getItem("userid"));
 
@@ -149,11 +151,7 @@ const Logout=()=>{
 
 
 console.log("emp",emp); 
-emp.map(url=>{
-  console.log("Istrue===>",`http://localhost:4000/${url.image}`);
-  
-  // console.log("Istrue1===>",url.image=="uploads/1694248779888-071c4ce7bdd7827b2a8686fdb92acd63.jpg");
-})
+console.log("Istrue1===>",profileImg);
   return (
     <Box sx={{ display: 'flex',backgroundColor:"" }}>
       <CssBaseline />
@@ -181,9 +179,14 @@ emp.map(url=>{
       >
         <Toolbar sx={{display:"flex",justifyContent:"space-between"}}>
         {/* <AccountCircleIcon  /> */}
+        <Box sx={{display:"flex"}}>
+        <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={`http://localhost:4000/${profileImg}`} /> 
+                  {/* <Avatar alt="Remy Sharp" src="http://localhost:4000/uploads//1697040910853-IMG-20190510-WA0001.jpg" />  */}
+        </ListItemAvatar>
           <Typography variant="h6" noWrap component="div">
            {localvalue}
-          </Typography>
+          </Typography></Box>
           <Box sx={{    display: "flex",
               alignItems: "center"}}>
           <Typography >{"Welcome :) "+username}</Typography>
@@ -229,7 +232,7 @@ renderInput={(params) => <TextField {...params} label="Movie" />}
     <ListItem key={text}  
 
     disablePadding>
-      <ListItemButton selected={selectedIndex==index} sx={{ bgcolor: '#383c8dd4',color:"black","&:hover":{color:"black"} }} onClick={()=>getEmpId(text._id,text.name,index)}>
+      <ListItemButton selected={selectedIndex==index} sx={{ bgcolor: '#383c8dd4',color:"black","&:hover":{color:"black"} }} onClick={()=>getEmpId(text,index)}>
         {/* <ListItemIcon>
           {index % 2 === 0 ? <AccountCircleIcon  /> : <AccountCircleIcon  />}
         </ListItemIcon> */}

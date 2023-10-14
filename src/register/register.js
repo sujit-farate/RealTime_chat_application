@@ -13,6 +13,7 @@ const Register = () => {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const Cpassword = document.getElementById("Cpassword").value;
     const profile = document.getElementById("profile").files[0];
   //  const profilePath=`uploads\\${profile.lastModified}-${profile.name}`
 
@@ -30,6 +31,7 @@ const Register = () => {
     datav1.append("name", name);
     datav1.append("email", email);
     datav1.append("password", password);
+    datav1.append("Cpassword", Cpassword);
     datav1.append("file", profile);
 
     var config = {
@@ -109,7 +111,7 @@ const Register = () => {
     >
       <div
         style={{
-          height: "350px",
+          // height: "350px",
           width: "300px",
           border: "1px solid gray",
           display: "flex",
@@ -127,7 +129,7 @@ const Register = () => {
             flexDirection: " column",
             justifyContent: "space-evenly",
             alignItems: "center",
-            height: "59vh",
+            height: "76vh",
           }}
         >
           <h1>User Registration</h1>
@@ -135,6 +137,7 @@ const Register = () => {
           <TextField id="name" label="name" size="small" />
           <TextField id="email" label="email" size="small" />
           <TextField id="password" label="password" size="small" />
+          <TextField id="Cpassword" label="confirm password" size="small" />
           <TextField id="profile"  size="small" type="file" />
           <Button variant="contained" onClick={userRegister}>
             Register

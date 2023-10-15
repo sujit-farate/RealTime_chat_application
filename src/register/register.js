@@ -49,7 +49,9 @@ const Register = () => {
                     // title: 'Good job!',
                     text: `${response.data.message}`,
                     icon: "success",
-                  })
+                  }).then(()=>(
+                    window.location.reload()
+                  ))
         }else{
           Swal.fire({
                     // title: 'Good job!',

@@ -210,7 +210,7 @@ useEffect(() => {
             </List>
             
             
-            <div style={{position:"fixed",bottom:"9vh"}}>{isTyping?"Typing...":null}</div>
+            <div style={{position:"fixed",bottom:"11vh"}}>{isTyping?"Typing...":null}</div>
           </Box>
 
           <footer className="message">

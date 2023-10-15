@@ -161,9 +161,18 @@ console.log("Istrue1===>",profileImg);
       >
         <Toolbar sx={{display:"flex",justifyContent:"space-between"}}>
         {/* <AccountCircleIcon  /> */}
-        <Box sx={{    display: "flex",
-              alignItems: "center"}}>
+        {/* <Box sx={{    display: "flex",
+              alignItems: "center"}}> */} 
+              <Box sx={{display:"flex"}}>
         <IconButton onClick={handleClick}><StorageRoundedIcon/></IconButton>
+          {/* <Typography variant="h6" noWrap component="div">
+           {localvalue}
+          </Typography></Box> */}
+          
+        <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={`http://localhost:4000/${profileImg}`} /> 
+                  {/* <Avatar alt="Remy Sharp" src="http://localhost:4000/uploads//1697040910853-IMG-20190510-WA0001.jpg" />  */}
+        </ListItemAvatar>
           <Typography variant="h6" noWrap component="div">
            {localvalue}
           </Typography></Box>

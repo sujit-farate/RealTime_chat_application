@@ -73,13 +73,17 @@ socket.on("checkTyping",(msg)=>{
 
 
 const handleMessage=(e)=>{
-
+  console.log("events",e.target.ke)
 setInputMessage(e.target.value)
    
 }
 
 
-const handleKeyDown = () => {
+const handleKeyDown = (e) => {
+  console.log("eevnt",e.keyCode);
+  // if(e.keyCode==16||e.keyCode==18) return 
+    
+  
   socket.emit("isTyping", JSON.stringify({
         
     Chat_Id1: `${props.username}_${props.localvalue}`,
@@ -150,7 +154,7 @@ useEffect(() => {
    
     return (
       <div style={{ width: "-webkit-fill-available" }}>
-        <Box>
+        {props?.localvalue?<Box>
           <Box
             component="main"
             sx={{
@@ -166,7 +170,7 @@ useEffect(() => {
            
             <List>
               {message?.map((val) => {
-                console.log("message", val.Chat_Id);
+                console.log("message", val.datetime);
                 return (
                   <>
                     <ListItem
@@ -240,7 +244,11 @@ useEffect(() => {
             </IconButton>
             {/* <SendIcon/> */}
           </footer>
-        </Box>
+        </Box>:<img src="./medium-shot-people-using-apps-make-friends_23-2150580359.jpg" style={{    width: "80.9vw",
+    height: "41.4vw",
+    position: "absolute",
+    top: "64px"}}/>}
+        
       </div>
     );
 }

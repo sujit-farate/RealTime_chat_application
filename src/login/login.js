@@ -23,23 +23,30 @@ const Login = () => {
         console.log(response);
         console.log(response.data.data);
         if (response.data.status == true) {
-          Swal.fire({
-            // title: 'Good job!',
-            text: `${response.data.message}`,
-            icon: "success",
-          }).then(() => {
-            navigate("/chatv1", {
-              state: {
-                name: response.data.data.name,
-                email: email,
-                password: password,
-              },
-            });
+          navigate("/chatv1", {
+            state: {
+              name: response.data.data.name,
+              email: email,
+              password: password,
+            },
           });
+          // Swal.fire({
+          //   // title: 'Good job!',
+          //   text: `${response.data.message}`,
+          //   icon: "success",
+          // }).then(() => {
+          //   navigate("/chatv1", {
+          //     state: {
+          //       name: response.data.data.name,
+          //       email: email,
+          //       password: password,
+          //     },
+          //   });
+          // });
         } else {
           Swal.fire({
             // title: 'Good job!',
-            text: "User Login Faild",
+            text: "Invalid Username or Password",
             // text: `${response.data.message}`,
             icon: "error",
           });

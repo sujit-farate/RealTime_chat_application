@@ -1,4 +1,4 @@
-import {  Drawer, List, ListItem, ListItemButton, ListItemText, TextField,useTheme, useMediaQuery, Divider } from '@mui/material'
+import {  Drawer, List, ListItem, ListItemButton, ListItemText, TextField,useTheme, useMediaQuery, Divider, ListItemAvatar, Avatar } from '@mui/material'
 import React, { useState } from 'react'
 
 
@@ -36,14 +36,14 @@ const SearchEmployee = (props) => {
       
       }
 
-    console.log("filterEmployee",props.filterEmployee);
+    console.log("filterEmployee",props.emp);
   return (
     <div>
-        <Drawer open={props.open} onClose={handleClose}>
+        <Drawer open={props.open} onClose={handleClose} sx={{".MuiDrawer-paper": isXsScreen?{width:"33vw"}:null}}>
 
-        <TextField type='search' placeholder='Search' size='small' 
-        value={props.name} onChange={searchName} 
-        />
+        {isXsScreen?null:<TextField type='search' placeholder='Search' size='small' 
+        value={props.name} onChange={searchName} sx={{width:"19vw"}}
+        />}
         {isXsScreen?
         <List sx={{paddingTop:'0px'}}>
   {props.emp?.map((text, index) => (
@@ -52,15 +52,11 @@ const SearchEmployee = (props) => {
 
     disablePadding>
       <ListItemButton selected={selectedIndex==index} sx={{ bgcolor: '#383c8dd4',color:"black","&:hover":{color:"black"} }} onClick={()=>getempFromsearch(text.name)}>
-        {/* <ListItemIcon>
-          {index % 2 === 0 ? <AccountCircleIcon  /> : <AccountCircleIcon  />}
-        </ListItemIcon> */}
-
-                {/* <ListItemAvatar>
-                  {index % 2 === 0?<Avatar alt="Remy Sharp" src="/images/profile1.jpg" />: <Avatar alt="Remy Sharp" src="/images/profile.JPG" /> }
-         
-        </ListItemAvatar> */}
-
+      
+      <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={`http://localhost:4000/${text.image}`} /> 
+                  
+        </ListItemAvatar>
         <ListItemText  primary={text.name}  
         sx={selectedIndex==index?{color:"black"}:{color:"white","&:hover":{color:"black"}}}
         // sx={{color:"white","&:hover":{color:"black"}}}
@@ -77,7 +73,7 @@ props.filterEmployee?props.filterEmployee.map(item=>{
         <ListItem><ListItemButton onClick={()=>getempFromsearch(item.name)}>
     <ListItemText primary={item.name}/>
     </ListItemButton>
-</ListItem>
+</ListItem><Divider />
 </>)
 }):null
 }

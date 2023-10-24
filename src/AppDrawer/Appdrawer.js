@@ -12,7 +12,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-import { Autocomplete, Avatar, Button, IconButton, ListItemAvatar, TextField, createTheme, useMediaQuery,useTheme } from '@mui/material';
+import { Autocomplete, Avatar, Button, IconButton, ListItemAvatar, TextField, Tooltip, createTheme, useMediaQuery,useTheme } from '@mui/material';
 
 
 import { useEffect } from 'react';
@@ -168,18 +168,18 @@ console.log("Istrue1===>",profileImg);
           {/* <Typography variant="h6" noWrap component="div">
            {localvalue}
           </Typography></Box> */}
-          
-        <ListItemAvatar>
+          {localvalue? <ListItemAvatar>
                   <Avatar alt="Remy Sharp" src={`http://localhost:4000/${profileImg}`} /> 
-                  {/* <Avatar alt="Remy Sharp" src="http://localhost:4000/uploads//1697040910853-IMG-20190510-WA0001.jpg" />  */}
-        </ListItemAvatar>
+                 
+        </ListItemAvatar>:null}
+       
           <Typography variant="h6" noWrap component="div">
            {localvalue}
           </Typography></Box>
           <Box sx={{    display: "flex",
               alignItems: "center"}}>
           <Typography >{"Welcome :) "+username}</Typography>
-          <IconButton onClick={Logout} sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Box>
+          <Tooltip title="Logout"><IconButton onClick={Logout} sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Tooltip></Box>
         </Toolbar>
       </AppBar>:
       <AppBar 
@@ -189,17 +189,17 @@ console.log("Istrue1===>",profileImg);
         <Toolbar sx={{display:"flex",justifyContent:"space-between"}}>
         {/* <AccountCircleIcon  /> */}
         <Box sx={{display:"flex"}}>
-        <ListItemAvatar>
+        {localvalue?<ListItemAvatar>
                   <Avatar alt="Remy Sharp" src={`http://localhost:4000/${profileImg}`} /> 
-                  {/* <Avatar alt="Remy Sharp" src="http://localhost:4000/uploads//1697040910853-IMG-20190510-WA0001.jpg" />  */}
-        </ListItemAvatar>
+                  
+        </ListItemAvatar>:null}
           <Typography variant="h6" noWrap component="div">
            {localvalue}
           </Typography></Box>
           <Box sx={{    display: "flex",
               alignItems: "center"}}>
           <Typography >{"Welcome :) "+username}</Typography>
-          <IconButton onClick={Logout}  sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Box>
+        <Tooltip title="Logout"><IconButton onClick={Logout}  sx={{color:"white"}}><LogoutTwoToneIcon/></IconButton></Tooltip> </Box>
         </Toolbar>
       </AppBar>}
       
